@@ -1,1 +1,3 @@
 device.license
+.vscode/
+*.pem

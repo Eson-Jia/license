@@ -6,8 +6,9 @@ licenseContent = None
 with open('device.license') as license:
     licenseContent = license.read()
 
-with open('jia_rsa.pub', 'r') as pub:
-    pubKey = pub.read()
+with open('public.pem') as pub:
+    pubKey = rsa.PublicKey.load_pkcs1(pub.read())
 origin, sig = licenseContent.split(';')
-sig = base64.b64decode(sig.encode('UTF-8'))
-print(rsa.verify(origin, sig, pubKey))
+
+sig = base64.b64decode(sig.encode())
+print(rsa.verify(origin.encode(), sig, pubKey))
