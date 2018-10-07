@@ -11,4 +11,5 @@ with open('public.pem') as pub:
 origin, sig = licenseContent.split(';')
 
 sig = base64.b64decode(sig.encode())
-print(rsa.verify(origin.encode(), sig, pubKey))
+if rsa.verify(origin.encode(), sig, pubKey) == 'SHA-1':
+    print('config is {0}'.format(origin))
