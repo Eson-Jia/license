@@ -1,9 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import rsa
 import json
 import base64
 privkey = None
 with open('private.pem', 'r') as f:
-    privkey = rsa.PrivateKey.load_pkcs1(f.read().encode())
+    privkey = rsa.PrivateKey._load_pkcs1_pem(f.read().encode())
 GPUID = input('input the GPU ID:\n')
 maxLoad = input('input max load:\n')
 
