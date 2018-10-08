@@ -8,6 +8,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"encoding/pem"
+	"flag"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -25,6 +26,7 @@ b5+Dk8Et5A1f2rR3kvtpqDCuJQbeeHs4bA/kkLOKzlRXKeYuSYInRBnaacJQo2Ta
 BwIDAQAB
 -----END PUBLIC KEY-----
 `)
+var filePath = flag.String("input", "device.license", "license file path")
 
 func main() {
 	block, _ := pem.Decode(publicKey)
@@ -39,7 +41,7 @@ func main() {
 		return
 	}
 	pub := pubInterface.(*rsa.PublicKey)
-	b, err := ioutil.ReadFile("device.license")
+	b, err := ioutil.ReadFile(*filePath)
 	if err != nil {
 		fmt.Println("读取配置文件失败", err)
 		return

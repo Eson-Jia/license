@@ -1,2 +1,5 @@
-device.license
+*.license
 .vscode/
+sign
+verify
+
