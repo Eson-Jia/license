@@ -55,7 +55,7 @@ func main() {
 		return
 	}
 	var configStruct struct {
-		Maxload string `json:"maxload"`
+		Maxload int    `json:"maxload"`
 		GPU     string `json:"gpu"`
 	}
 	if err := json.Unmarshal([]byte(config), &configStruct); err != nil {
@@ -63,6 +63,4 @@ func main() {
 		return
 	}
 	fmt.Println("验证通过，", "最大负载：", configStruct.Maxload, "GPU编号：", configStruct.GPU)
-
-	// base64.NewDecoder
 }

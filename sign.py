@@ -9,7 +9,7 @@ with open('private.pem', 'r') as f:
 GPUID = input('input the GPU ID:\n')
 maxLoad = input('input max load:\n')
 
-originMessage = json.dumps({'gpu': GPUID, 'maxload': maxLoad})
+originMessage = json.dumps({'gpu': GPUID, 'maxload': int(maxLoad)})
 sigMessage = rsa.sign(originMessage.encode(), privkey, 'SHA-1')
 sigStr = base64.b64encode(sigMessage).decode()
 with open('device.license', 'w') as outFile:
