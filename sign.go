@@ -58,17 +58,14 @@ func GetPrivateKey(keyPath *string) (*rsa.PrivateKey, error) {
 	//get private key
 	conetent, err := ioutil.ReadFile(*keyPath)
 	if err != nil {
-		fmt.Println("open key file failed")
 		return nil, err
 	}
 	block, _ := pem.Decode(conetent)
 	if block == nil {
-		fmt.Println("解析私钥失败")
-		return nil, fmt.Errorf("%s", "解析私钥失败")
+		return nil, fmt.Errorf("%s", "pem.Decode解析私钥失败")
 	}
 	privateKey, err := x509.ParsePKCS1PrivateKey(block.Bytes)
 	if err != nil {
-		fmt.Println("解析私钥失败", err)
 		return nil, err
 	}
 	return privateKey, nil
